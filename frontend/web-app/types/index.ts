@@ -22,3 +22,20 @@ export type Auction = {
     imageUrl: string
     id: string
 }
+
+export type Bid = {
+    amount: number
+    bidder: string
+    auctionId: string
+    id: string
+    bidTime: string
+    bidStatus: string
+}
+
+export type AuctionFinished = {
+    auctionId: string
+    winner?: string
+    itemSold: boolean
+    amount?: number,
+    seller: string
+}
