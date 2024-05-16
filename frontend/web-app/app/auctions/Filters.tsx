@@ -9,17 +9,17 @@ const pageSizeButtons = [4, 8, 12];
 
 const orderButtons = [
     {
-        label: 'Alphabetical',
+        label: 'Alphabétique',
         icon: AiOutlineSortAscending,
         value: 'make'
     },
     {
-        label: 'End date',
+        label: 'Date de fin',
         icon: AiOutlineSortAscending,
         value: 'endingSoon'
     },
     {
-        label: 'Rencently added',
+        label: 'Ajoutée récemment',
         icon: BsFillStopCircleFill,
         value: 'new'
     },
@@ -27,17 +27,17 @@ const orderButtons = [
 
 const filterButtons = [
     {
-        label: 'Live Auctions',
+        label: 'Enchère en cours',
         icon: GiFlame,
         value: 'live'
     },
     {
-        label: 'Ending < 6 hours',
+        label: 'Fin < 6h',
         icon: GiFinishLine,
         value: 'endingSoon'
     },
     {
-        label: 'Completed',
+        label: 'Finies',
         icon: BsStopwatchFill,
         value: 'finished'
     },
@@ -52,7 +52,7 @@ export default function Filters() {
     return (
         <div className='flex justify-between items-center mb-4'>
             <div>
-                <span className='uppercase text-sm text-gray-500 mr-2'>Filter by</span>
+                <span className='uppercase text-sm text-gray-500 mr-2'>Filtrer par :</span>
                 <Button.Group>
                     {filterButtons.map(({ label, icon: Icon, value }) => (
                         <Button
@@ -67,7 +67,7 @@ export default function Filters() {
                 </Button.Group>
             </div>
             <div>
-                <span className='uppercase text-sm text-gray-500 mr-2'>Order by</span>
+                <span className='uppercase text-sm text-gray-500 mr-2'>Ordonner par</span>
                 <Button.Group>
                     {orderButtons.map(({ label, icon: Icon, value }) => (
                         <Button
@@ -82,7 +82,7 @@ export default function Filters() {
                 </Button.Group>
             </div>
             <div>
-                <span className='uppercase text-sm text-gray-500 mr-2'>Page size</span>
+                <span className='uppercase text-sm text-gray-500 mr-2'>Taille de page</span>
                 <Button.Group>
                     {pageSizeButtons.map((value, i) => (
                         <Button key={i}

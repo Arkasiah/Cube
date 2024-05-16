@@ -27,7 +27,7 @@ export default function DeleteButton({id}: Props) {
 
     return (
         <Button color='failure' isProcessing={loading} onClick={doDelete}>
-            Delete Auction
+            Supprimer
         </Button>
     )
 }

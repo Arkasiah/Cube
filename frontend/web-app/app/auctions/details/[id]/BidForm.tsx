@@ -19,7 +19,7 @@ export default function BidForm({ auctionId, highBid }: Props) {
     function onSubmit(data: FieldValues) {
         if (data.amount <= highBid) {
             reset();
-            return toast.error('Bid must be at least $' + numberWithCommas(highBid + 1))
+            return toast.error('Offre minimum de' + numberWithCommas(highBid + 1) + ' $')
         }
             
         placeBidForAuction(auctionId, +data.amount).then(bid => {
@@ -35,7 +35,7 @@ export default function BidForm({ auctionId, highBid }: Props) {
                 type="number" 
                 {...register('amount')}
                 className='input-custom text-sm text-gray-600'
-                placeholder={`Enter your bid (minimum bid is $${numberWithCommas(highBid + 1)})`}
+                placeholder={`Saisi ton offre(offre minimum de ${numberWithCommas(highBid + 1)} €)`}
             />
         </form>
     )

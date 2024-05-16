@@ -33,27 +33,27 @@ export default function UserActions({user}: Props) {
   return (
     <Dropdown
       inline
-      label={`Welcome ${user.name}`}
+      label={`Salut ${user.name} !`}
     >
       <Dropdown.Item icon={HiUser} onClick={setSeller}>
-          My Auctions
+          Mes enchères
       </Dropdown.Item>
       <Dropdown.Item icon={AiFillTrophy} onClick={setWinner}>
-          Auctions won
+          Enchères gagnées
       </Dropdown.Item>
       <Dropdown.Item icon={AiFillCar}>
         <Link href='/auctions/create'>
-          Sell my car
+          Vendre mon bolide
         </Link>
       </Dropdown.Item>
-      <Dropdown.Item icon={HiCog}>
+      {/* <Dropdown.Item icon={HiCog}>
         <Link href='/session'>
           Session (dev only)
         </Link>
-      </Dropdown.Item>
+      </Dropdown.Item> */}
       <Dropdown.Divider />
       <Dropdown.Item icon={AiOutlineLogout} onClick={() => signOut({callbackUrl: '/'})}>
-        Sign out
+        Se déconnecter
       </Dropdown.Item>
     </Dropdown>
   )

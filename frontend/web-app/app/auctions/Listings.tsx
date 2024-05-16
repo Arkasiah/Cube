@@ -48,7 +48,7 @@ export default function Listings() {
         });
     }, [url]);
     
-    if(loading) return <h3>Loading ...</h3>
+    if(loading) return <h3>Chargement en cours ...</h3>
 
     return (
         <>

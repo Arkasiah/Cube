@@ -1,6 +1,7 @@
 import { numberWithCommas } from '@/app/lib/numberWithComma';
 import { Bid } from '@/types'
 import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
 import React from 'react'
 
 type Props = {
@@ -14,19 +15,19 @@ export default function BidItem({ bid }: Props) {
         switch (bid.bidStatus) {
             case 'Accepted':
                 bgColor = 'bg-green-200'
-                text = 'Bid accepted'
+                text = 'Offre acceptée'
                 break;
             case 'AcceptedBelowReserve':
                 bgColor = 'bg-amber-500'
-                text = 'Reserve not met'
+                text = 'Offre acceptée sous réserve'
                 break;
             case 'TooLow':
                 bgColor = 'bg-red-200'
-                text = 'Bid was too low'
+                text = 'Offre trop basse'
                 break
             default:
                 bgColor = 'bg-red-200'
-                text = 'Bid placed after auction finished'
+                text = 'Offre refusée'
                 break;
         }
         return {bgColor, text}
@@ -39,13 +40,13 @@ export default function BidItem({ bid }: Props) {
             ${getBidInfo().bgColor}
         `}>
             <div className='flex flex-col'>
-                <span>Bidder: {bid.bidder}</span>
+                <span>Offrant: {bid.bidder}</span>
                 <span className='text-gray-700 text-sm'>
-                    Time: {format(new Date(bid.bidTime), 'dd MMM yyyy h:mm a')}
+                    Date: {format(new Date(bid.bidTime), 'dd MMM yyyy h:mm', { locale: fr })}
                 </span>
             </div>
             <div className='flex flex-col text-right'>
-                <div className='text-xl font-semibold'>${numberWithCommas(bid.amount)}</div>
+                <div className='text-xl font-semibold'>{numberWithCommas(bid.amount)} €</div>
                 <div className='flex flex-row items-center'>
                     <span>{getBidInfo().text}</span>
                 </div>

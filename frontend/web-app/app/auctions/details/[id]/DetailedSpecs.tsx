@@ -12,7 +12,7 @@ export default function DetailedSpecs({auction}: Props) {
             <Table.Body className="divide-y">
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        Seller
+                        Vendeur
                     </Table.Cell>
                     <Table.Cell>
                         {auction.seller}
@@ -20,7 +20,7 @@ export default function DetailedSpecs({auction}: Props) {
                 </Table.Row>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        Make
+                        Marque
                     </Table.Cell>
                     <Table.Cell>
                         {auction.make}
@@ -28,7 +28,7 @@ export default function DetailedSpecs({auction}: Props) {
                 </Table.Row>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        Model
+                        Modèle
                     </Table.Cell>
                     <Table.Cell>
                         {auction.model}
@@ -36,7 +36,7 @@ export default function DetailedSpecs({auction}: Props) {
                 </Table.Row>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        Year manufactured
+                        Année de fabrication
                     </Table.Cell>
                     <Table.Cell>
                         {auction.year}
@@ -44,7 +44,7 @@ export default function DetailedSpecs({auction}: Props) {
                 </Table.Row>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        Mileage
+                        Kilométrage
                     </Table.Cell>
                     <Table.Cell>
                         {auction.mileage}
@@ -52,10 +52,10 @@ export default function DetailedSpecs({auction}: Props) {
                 </Table.Row>
                 <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        Has reserve price?
+                        Prix de réserve ? 
                     </Table.Cell>
                     <Table.Cell>
-                        {auction.reservePrice > 0 ? 'Yes' : 'No'}
+                        {auction.reservePrice > 0 ? 'Oui' : 'Non'}
                     </Table.Cell>
                 </Table.Row>
             </Table.Body>

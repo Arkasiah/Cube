@@ -59,7 +59,7 @@ export default function SignalRProvider({ children, user }: Props) {
                                     finishedAuction={finishedAuction} 
                                     auction={auction}
                                 />,
-                            error: (err) => 'Auction finished!'
+                            error: (err) => 'Enchère terminée !'
                         }, {success: {duration: 10000, icon: null}})
                     })
 

@@ -22,7 +22,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }:
           ? 'bg-amber-600' : 'bg-green-600'}
             `}>
       {completed ? (
-        <span>Auction finished</span>
+        <span>Enchère terminée</span>
       ) : (
         <span suppressHydrationWarning={true}>
           {zeroPad(days)}:{zeroPad(hours)}:{zeroPad(minutes)}:{zeroPad(seconds)}

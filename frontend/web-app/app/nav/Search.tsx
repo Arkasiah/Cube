@@ -30,7 +30,7 @@ export default function Search() {
                 value={searchValue}
                 onChange={onChange}
                 type="text"
-                placeholder='Search for cars by make, model or color'
+                placeholder='Chercher ...'
                 className='
                 input-custom
                 text-sm

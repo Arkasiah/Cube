@@ -8,7 +8,7 @@ export default async function Update({params}: {params: {id: string}}) {
 
   return (
     <div className='mx-auto max-w-[75%] shadow-lg p-10 bg-white rounded-lg'>
-      <Heading title='Update your auction' subtitle='Please update the details of your car' />
+      <Heading title='Mise à jour' subtitle='Rentres les nouvelles informations' />
       <AuctionForm auction={data} />
     </div>
   )

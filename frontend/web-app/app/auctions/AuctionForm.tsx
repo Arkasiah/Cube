@@ -54,47 +54,47 @@ export default function AuctionForm({ auction }: Props) {
 
     return (
         <form className='flex flex-col mt-3' onSubmit={handleSubmit(onSubmit)}>
-            <Input label='Make' name='make' control={control}
-                rules={{ required: 'Make is required' }} />
-            <Input label='Model' name='model' control={control}
-                rules={{ required: 'Model is required' }} />
-            <Input label='Color' name='color' control={control}
-                rules={{ required: 'Color is required' }} />
+            <Input label='Marque' name='make' control={control}
+                rules={{ required: 'La marque est requise' }} />
+            <Input label='Modèle' name='model' control={control}
+                rules={{ required: 'Le modèle est requis' }} />
+            <Input label='Couleur' name='color' control={control}
+                rules={{ required: 'La couleur est requise' }} />
 
             <div className='grid grid-cols-2 gap-3'>
-                <Input label='Year' name='year' control={control} type='number'
-                    rules={{ required: 'Year is required' }} />
-                <Input label='Mileage' name='mileage' control={control} type='number'
-                    rules={{ required: 'Model is required' }} />
+                <Input label='Année' name='year' control={control} type='number'
+                    rules={{ required: 'L\'année est requise' }} />
+                <Input label='Kilométrage' name='mileage' control={control} type='number'
+                    rules={{ required: 'Le kilométrage est requis' }} />
             </div>
 
             {pathname === '/auctions/create' &&
             <>
                 <Input label='Image URL' name='imageUrl' control={control}
-                    rules={{ required: 'Image URL is required' }} />
+                    rules={{ required: 'L\'URL est requise' }} />
 
                 <div className='grid grid-cols-2 gap-3'>
-                    <Input label='Reserve Price (enter 0 if no reserve)'
+                    <Input label='Prix de réserve'
                         name='reservePrice' control={control} type='number'
-                        rules={{ required: 'Reserve price is required' }} />
+                        rules={{ required: 'Le prix de réserve est requis' }} />
                     <DateInput
-                        label='Auction end date/time'
+                        label='Date fin enchère'
                         name='auctionEnd'
                         control={control}
                         dateFormat='dd MMMM yyyy h:mm a'
                         showTimeSelect
-                        rules={{ required: 'Auction end date is required' }} />
+                        rules={{ required: 'La date de fin est requise' }} />
                 </div>
             </>}
 
 
             <div className='flex justify-between'>
-                <Button outline color='gray'>Cancel</Button>
+                <Button outline color='gray'>Annuler</Button>
                 <Button
                     isProcessing={isSubmitting}
                     disabled={!isValid}
                     type='submit'
-                    outline color='success'>Submit</Button>
+                    outline color='success'>Valider</Button>
             </div>
         </form>
     )

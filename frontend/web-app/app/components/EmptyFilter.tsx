@@ -15,8 +15,8 @@ type Props = {
 }
 
 export default function EmptyFilter({
-    title = 'No matches for this filter',
-    subtitle = 'Try changing or resetting the filter',
+    title = 'Aucune enchère trouvée pour ces filtres',
+    subtitle = 'Changez vos filtres pour trouver des enchères',
     showReset,
     showLogin,
     callbackUrl
@@ -28,7 +28,7 @@ export default function EmptyFilter({
             <Heading title={title} subtitle={subtitle} center />
             <div className='mt-4'>
                 {showReset && (
-                    <Button outline onClick={reset}>Remove Filters</Button>
+                    <Button outline onClick={reset}>Supprimer les filtres</Button>
                 )}
                 {showLogin && (
                     <Button outline onClick={() => signIn('id-server', {callbackUrl})}>Login</Button>

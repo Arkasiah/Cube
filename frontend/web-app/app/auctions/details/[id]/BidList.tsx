@@ -47,20 +47,20 @@ export default function BidList({ user, auction }: Props) {
         setOpen(openForBids);
     }, [openForBids, setOpen]);
 
-    if (loading) return <span>Loading bids...</span>
+    if (loading) return <span>Chargement des enchères ...</span>
 
     return (
         <div className='rounded-lg shadow-md'>
             <div className='py-2 px-4 bg-white'>
                 <div className='sticky top-0 bg-white p-2'>
-                    <Heading title={`Current high bid is $${numberWithCommas(highBid)}`} />
+                    <Heading title={`L'offre la plus haute est de ${numberWithCommas(highBid)} €`} />
                 </div>
             </div>
 
             <div className='overflow-auto h-[400px] flex flex-col-reverse px-2'>
                 {bids.length === 0 ? (
-                    <EmptyFilter title='No bids for this item'
-                        subtitle='Please feel free to make a bid' />
+                    <EmptyFilter title='Aucune offre actuellement pour ce bolide'
+                        subtitle='Lance-toi ! Sois le premier à miser !' />
                 ) : (
                     <>
                         {bids.map(bid => (
@@ -73,15 +73,15 @@ export default function BidList({ user, auction }: Props) {
             <div className='px-2 pb-2 text-gray-500'>
                 {!open ? (
                     <div className='flex items-center justify-center p-2 text-lg font-semibold'>
-                        This auction has finished
+                        Cette enchère est terminée
                     </div>
                 ) : !user ? (
                     <div className='flex items-center justify-center p-2 text-lg font-semibold'>
-                        Please login to make a bid
+                        Connecte-toi pour enchérir !
                     </div>
                 ) : user && user.username === auction.seller ? (
                     <div className='flex items-center justify-center p-2 text-lg font-semibold'>
-                        You cannot bid on your own auction
+                        Tu ne peux pas enchérir sur ta propre enchère
                     </div>
                 ) : (
                     <BidForm auctionId={auction.id} highBid={highBid} />
