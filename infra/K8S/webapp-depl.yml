@@ -17,7 +17,7 @@ spec:
         imagePullPolicy: Always
         env:
           - name: NEXTAUTH_SECRET
-            valueFROM: 
+            valueFrom: 
               secretKeyRef:
                 name: webapp-secret
                 key: authSecret
