@@ -17,7 +17,7 @@ spec:
         imagePullPolicy: Always
         env:
           - name: ClientApp
-            value: https://app.cubeauction.com
+            value: https://app.cube-auction.store
           - name: IdentityServiceUrl
             value: https://id.cube-auction.store
 ---
