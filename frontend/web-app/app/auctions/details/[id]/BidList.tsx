@@ -47,7 +47,7 @@ export default function BidList({ user, auction }: Props) {
         setOpen(openForBids);
     }, [openForBids, setOpen]);
 
-    if (loading) return <span>Chargement des enchères ...</span>
+    if (loading) return <span>Chargement des enchères .....</span>
 
     return (
         <div className='rounded-lg shadow-md'>

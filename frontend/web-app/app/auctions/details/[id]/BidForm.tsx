@@ -19,7 +19,7 @@ export default function BidForm({ auctionId, highBid }: Props) {
     function onSubmit(data: FieldValues) {
         if (data.amount <= highBid) {
             reset();
-            return toast.error('Offre minimum de' + numberWithCommas(highBid + 1) + ' $')
+            return toast.error('Offre minimum de' + numberWithCommas(highBid + 1) + ' €')
         }
             
         placeBidForAuction(auctionId, +data.amount).then(bid => {

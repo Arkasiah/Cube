@@ -8,9 +8,9 @@ on:
       - 'frontend/web-app/**'
 
 env:
-    REGISTRY_IMAGE: arkasiah/web-app
-    DOCKERFILE: frontend/web-app/Dockerfile
-    DEPLOYMENT_NAME: webapp
+  REGISTRY_IMAGE: arkasiah/web-app
+  DOCKERFILE: frontend/web-app/Dockerfile
+  DEPLOYMENT_NAME: webapp
 
 jobs:
   build:
@@ -26,7 +26,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: "{{defaultContext}}"
-        file: ${{ env.DOCKERFILE}}
+        file: ${{ env.DOCKERFILE }}
         push: true
         tags: ${{ env.REGISTRY_IMAGE }}:latest
     - name: Install doctl

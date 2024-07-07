@@ -8,9 +8,9 @@ on:
       - 'src/NotificationService/**'
 
 env:
-    REGISTRY_IMAGE: arkasiah/notify-svc
-    DOCKERFILE: src/NotificationService/Dockerfile
-    DEPLOYMENT_NAME: notify-svc
+  REGISTRY_IMAGE: arkasiah/notify-svc
+  DOCKERFILE: src/NotificationService/Dockerfile
+  DEPLOYMENT_NAME: notify-svc
 
 jobs:
   build:
@@ -26,7 +26,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: "{{defaultContext}}"
-        file: ${{ env.DOCKERFILE}}
+        file: ${{ env.DOCKERFILE }}
         push: true
         tags: ${{ env.REGISTRY_IMAGE }}:latest
     - name: Install doctl

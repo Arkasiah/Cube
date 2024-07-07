@@ -8,9 +8,9 @@ on:
       - 'src/SearchService/**'
 
 env:
-    REGISTRY_IMAGE: arkasiah/search-svc
-    DOCKERFILE: src/SearchService/Dockerfile
-    DEPLOYMENT_NAME: search-svc
+  REGISTRY_IMAGE: arkasiah/search-svc
+  DOCKERFILE: src/SearchService/Dockerfile
+  DEPLOYMENT_NAME: search-svc
 
 jobs:
   build:
@@ -26,7 +26,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: "{{defaultContext}}"
-        file: ${{ env.DOCKERFILE}}
+        file: ${{ env.DOCKERFILE }}
         push: true
         tags: ${{ env.REGISTRY_IMAGE }}:latest
     - name: Install doctl
