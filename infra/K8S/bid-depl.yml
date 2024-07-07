@@ -14,20 +14,29 @@ spec:
       containers:
       - name: bid-svc 
         image: arkasiah/bid-svc
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         env:
-        - name: RabbitMq__Host
-          value: rabbit-clusterip
-        - name: RabbitMq__Username
-          value: rabbit
-        - name: RabbitMq__Password
-          value: rabbit
-        - name: ConnectionStrings__BidDbConnection
-          value: mongodb://root:mongopw@mongo-clusterip
-        - name: IdentityServiceUrl
-          value: http://id.cube-auction.store
-        - name: GrpcAuction
-          value: http://auction-clusterip:7777
+          - name: RabbitMq__Host
+            value: rabbit-clusterip
+          - name: RabbitMq__Username
+            valueFrom:
+              secretKeyRef:
+                name: bid-secret
+                key: rabbitUn
+          - name: RabbitMq__Password
+            valueFrom:
+              secretKeyRef:
+                name: bid-secret
+                key: rabbitPw
+          - name: ConnectionStrings__BidDbConnection
+            valueFrom:
+              secretKeyRef:
+                name: bid-secret
+                key: connString
+          - name: IdentityServiceUrl
+            value: https://id.cube-auction.store
+          - name: GrpcAuction
+            value: http://auction-clusterip:7777
 ---
 apiVersion: v1
 kind: Service

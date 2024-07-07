@@ -14,12 +14,12 @@ spec:
       containers:
       - name: gateway-svc
         image: arkasiah/gateway-svc
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         env:
-        - name: ClientApp
-          value: https://app.cubeauction.com
-        - name: IdentityServiceUrl
-          value: https://id.cube-auction.store
+          - name: ClientApp
+            value: https://app.cubeauction.com
+          - name: IdentityServiceUrl
+            value: https://id.cube-auction.store
 ---
 apiVersion: v1
 kind: Service
