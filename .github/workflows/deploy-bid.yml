@@ -5,11 +5,11 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'src/BidingService/**'
+      - 'src/BiddingService/**'
 
 env:
     REGISTRY_IMAGE: arkasiah/bid-svc
-    DOCKERFILE: src/BidingService/Dockerfile
+    DOCKERFILE: src/BiddingService/Dockerfile
     DEPLOYMENT_NAME: bid-svc
 
 jobs:
