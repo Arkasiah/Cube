@@ -4,6 +4,7 @@ metadata:
   name: ingress-svc
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "https://app.cube-auction.store/"
   labels:
     name: ingress-svc
 spec:
