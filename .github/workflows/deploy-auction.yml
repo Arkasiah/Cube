@@ -9,7 +9,7 @@ on:
 
 env:
     REGISTRY_IMAGE: arkasiah/auction-svc
-    DOCKERFILE: src/AutionService/Dockerfile
+    DOCKERFILE: src/AuctionService/Dockerfile
     DEPLOYMENT_NAME: auction-svc
 
 jobs:
