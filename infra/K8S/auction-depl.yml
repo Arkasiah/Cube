@@ -34,7 +34,7 @@ spec:
                 name: auction-secret
                 key: connString
           - name: IdentityServiceUrl
-            value: http://id.cube-auction.store
+            value: https://id.cube-auction.store
           - name: Kestrel__Endpoints__Grpc__Protocols
             value: Http2
           - name: Kestrel__Endpoints__Grpc__Url
@@ -42,7 +42,7 @@ spec:
           - name: Kestrel__Endpoints__WebApi__Protocols
             value: Http1
           - name: Kestrel__Endpoints__WebApi__Url
-            value: Http://+:80
+            value: http://+:80
 ---
 apiVersion: v1
 kind: Service
