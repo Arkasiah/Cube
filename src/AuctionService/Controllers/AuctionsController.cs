@@ -15,14 +15,14 @@ namespace AuctionService.Controllers;
 [Route("api/auctions")]
 public class AuctionsController : ControllerBase
 {
-    private readonly IAuctionRepository _repo;
+    private readonly AuctionDbContext _context;
     private readonly IMapper _mapper;
     private readonly IPublishEndpoint _publishEndpoint;
 
-    public AuctionsController(IAuctionRepository repo, IMapper mapper,
+    public AuctionsController(AuctionDbContext context, IMapper mapper,
         IPublishEndpoint publishEndpoint)
     {
-        _repo = repo;
+        _context = context;
         _mapper = mapper;
         _publishEndpoint = publishEndpoint;
     }
@@ -30,17 +30,26 @@ public class AuctionsController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<AuctionDto>>> GetAllAuctions(string date)
     {
-        return await _repo.GetAuctionsAsync(date);
+        var query = _context.Auctions.OrderBy(x => x.Item.Make).AsQueryable();
+
+        if (!string.IsNullOrEmpty(date))
+        {
+            query = query.Where(x => x.UpdatedAt.CompareTo(DateTime.Parse(date).ToUniversalTime()) > 0);
+        }
+
+        return await query.ProjectTo<AuctionDto>(_mapper.ConfigurationProvider).ToListAsync();
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<AuctionDto>> GetAuctionById(Guid id)
     {
-        var auction = await _repo.GetAuctionByIdAsync(id);
+        var auction = await _context.Auctions
+            .Include(x => x.Item)
+            .FirstOrDefaultAsync(x => x.Id == id);
 
         if (auction == null) return NotFound();
 
-        return auction;
+        return _mapper.Map<AuctionDto>(auction);
     }
 
     [Authorize]
@@ -51,13 +60,13 @@ public class AuctionsController : ControllerBase
 
         auction.Seller = User.Identity.Name;
 
-        _repo.AddAuction(auction);
+        _context.Auctions.Add(auction);
 
         var newAuction = _mapper.Map<AuctionDto>(auction);
 
         await _publishEndpoint.Publish(_mapper.Map<AuctionCreated>(newAuction));
 
-        var result = await _repo.SaveChangesAsync();
+        var result = await _context.SaveChangesAsync() > 0;
 
         if (!result) return BadRequest("Could not save changes to the DB");
 
@@ -69,7 +78,8 @@ public class AuctionsController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult> UpdateAuction(Guid id, UpdateAuctionDto updateAuctionDto)
     {
-        var auction = await _repo.GetAuctionEntityById(id);
+        var auction = await _context.Auctions.Include(x => x.Item)
+            .FirstOrDefaultAsync(x => x.Id == id);
 
         if (auction == null) return NotFound();
 
@@ -83,7 +93,7 @@ public class AuctionsController : ControllerBase
 
         await _publishEndpoint.Publish(_mapper.Map<AuctionUpdated>(auction));
 
-        var result = await _repo.SaveChangesAsync();
+        var result = await _context.SaveChangesAsync() > 0;
 
         if (result) return Ok();
 
@@ -94,17 +104,17 @@ public class AuctionsController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteAuction(Guid id)
     {
-        var auction = await _repo.GetAuctionEntityById(id);
+        var auction = await _context.Auctions.FindAsync(id);
 
         if (auction == null) return NotFound();
 
         if (auction.Seller != User.Identity.Name) return Forbid();
 
-        _repo.RemoveAuction(auction);
+        _context.Auctions.Remove(auction);
 
         await _publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
 
-        var result = await _repo.SaveChangesAsync();
+        var result = await _context.SaveChangesAsync() > 0;
 
         if (!result) return BadRequest("Could not update DB");
 
