@@ -27,6 +27,7 @@ public class AuctionsController : ControllerBase
         _publishEndpoint = publishEndpoint;
     }
 
+
     [HttpGet]
     public async Task<ActionResult<List<AuctionDto>>> GetAllAuctions(string date)
     {
