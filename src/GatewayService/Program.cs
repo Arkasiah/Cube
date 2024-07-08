@@ -20,7 +20,10 @@ builder.Services.AddCors(options =>
     options.AddPolicy("customPolicy", b => 
     {
         b.AllowAnyHeader()
-            .AllowAnyMethod().AllowCredentials().WithOrigins(builder.Configuration["ClientApp"]);
+            .WithOrigins("*")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+            // .AllowAnyMethod().AllowCredentials().WithOrigins(builder.Configuration["ClientApp"])
     });
 });
 
