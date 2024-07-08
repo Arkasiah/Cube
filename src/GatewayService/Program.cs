@@ -21,7 +21,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: customPolicy, b => 
     {
         b.AllowAnyHeader()
-            .WithOrigins("*")
+            .WithOrigins("https://app.cube-auction.store")
             .AllowAnyHeader()
             .AllowAnyMethod();
             // .AllowAnyMethod().AllowCredentials().WithOrigins(builder.Configuration["ClientApp"])
