@@ -14,23 +14,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters.NameClaimType = "username";
     });
 
-var customPolicy = "CustomPolicy";
 
 builder.Services.AddCors(options => 
 {
-    options.AddPolicy(name: customPolicy, b => 
+    options.AddPolicy("customPolicy", b => 
     {
         b.AllowAnyHeader()
-            .WithOrigins("https://app.cube-auction.store")
-            .AllowAnyHeader()
-            .AllowAnyMethod();
-            // .AllowAnyMethod().AllowCredentials().WithOrigins(builder.Configuration["ClientApp"])
+            .AllowAnyMethod().AllowCredentials().WithOrigins(builder.Configuration["ClientApp"]);
     });
 });
 
 var app = builder.Build();
 
-app.UseCors(customPolicy);
+app.UseCors();
 
 app.MapReverseProxy();
 
