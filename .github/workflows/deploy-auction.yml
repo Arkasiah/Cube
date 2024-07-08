@@ -1,4 +1,4 @@
-name: build-auction
+name: deploy-auction
 
 on:
   workflow_dispatch:
@@ -10,13 +10,12 @@ on:
 env:
   REGISTRY_IMAGE: arkasiah/auction-svc
   DOCKERFILE: src/AuctionService/Dockerfile
+  DEPLOYMENT_NAME: auction-svc
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
       - uses: docker/setup-buildx-action@v2
       
       - name: Login to DockerHub
@@ -28,7 +27,18 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: "{{defaultContext}}"
           file: ${{ env.DOCKERFILE }}
           push: true
           tags: ${{ env.REGISTRY_IMAGE }}:latest
+      
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      
+      - name: Save DigitalOcean kubeconfig
+        run: doctl kubernetes cluster kubeconfig save cubeauction
+      
+      - name: Restart kubernetes deployment
+        run: kubectl rollout restart deployment ${{ env.DEPLOYMENT_NAME }}
